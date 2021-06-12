@@ -85,7 +85,7 @@ extension HomeNode: ASTableDelegate, ASTableDataSource {
 	func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
 		switch indexPath.row {
 		case 2:
-			if !viewModel.newsViewModel.isSkeleton {
+			if viewModel.newsViewModel.isSuccess {
 				onTapNews?()
 			}
 			
