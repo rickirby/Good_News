@@ -31,10 +31,17 @@ class HomeNewsViewModel {
 		newsService.getNewsData(topic: "covid", itemsPerPage: itemsPerPage, page: 1)
 			.subscribe(onNext: { [weak self] result in
 				self?.totalResult = result.totalResults
-				self?.articles = result.articles
+				
+				if result.articles.isEmpty {
+					self?.articles = [NewsArticleResObject(title: "No Result Found", content: "System didn't find any news for requested topic", url: "", urlToImage: "ap_paper")]
+					self?.isSuccess = false
+				} else {
+					self?.articles = result.articles
+					self?.isSuccess = true
+				}
 				
 				self?.isSkeleton = false
-				self?.isSuccess = true
+				
 				self?.onNeedRefresh?()
 			}, onError: { [weak self] error in
 				if let error = error as? HTTPStatusCode {
