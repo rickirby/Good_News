@@ -16,6 +16,7 @@ class HomeNewsViewModel {
 	var articles: [NewsArticleResObject] = []
 	
 	var isSkeleton: Bool = true
+	var isSuccess: Bool = false
 	var totalResult: Int = 0
 	let itemsPerPage: Int = 10
 	
@@ -31,9 +32,19 @@ class HomeNewsViewModel {
 			.subscribe(onNext: { [weak self] result in
 				self?.totalResult = result.totalResults
 				self?.articles = result.articles
+				
+				self?.isSkeleton = false
+				self?.isSuccess = true
 				self?.onNeedRefresh?()
 			}, onError: { [weak self] error in
-				self?.articles = [NewsArticleResObject(title: "Error", content: "Something error happened", url: "", urlToImage: "ap_paper")]
+				if let error = error as? HTTPStatusCode {
+					self?.articles = [NewsArticleResObject(title: "Error", content: "Error happened with status code \(error.rawValue) (\(error.description))", url: "", urlToImage: "ap_paper")]
+				} else {
+					self?.articles = [NewsArticleResObject(title: "Error", content: error.localizedDescription, url: "", urlToImage: "ap_paper")]
+				}
+				
+				self?.isSkeleton = false
+				self?.isSuccess = false
 				self?.onNeedRefresh?()
 			})
 			.disposed(by: disposeBag)
