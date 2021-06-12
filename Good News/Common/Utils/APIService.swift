@@ -44,12 +44,16 @@ class APIService<Req: Encodable, Res: Decodable> {
 	
 	func load() -> Observable<Res> {
 		return Observable.just(url)
-			.flatMap { url -> Observable<Data> in
+			.flatMap { url -> Observable<(response: HTTPURLResponse, data: Data)> in
 				let request = URLRequest(url: url)
-				return URLSession.shared.rx.data(request: request)
-			}.map { data -> Res in
-				return try JSONDecoder().decode(Res.self, from: data)
-		}
+				return URLSession.shared.rx.response(request: request)
+			}.map { (res, data) -> Res in
+				if res.status?.responseType == .success {
+					return try JSONDecoder().decode(Res.self, from: data)
+				} else {
+					throw res.status ?? HTTPStatusCode.undefinedError
+				}
+			}
 	}
 	
 }
