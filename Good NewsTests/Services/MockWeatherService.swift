@@ -23,7 +23,7 @@ class MockWeatherService: WeatherServiceProtocol {
 				let weatherResResult = WeatherResResult(name: "test", weather: [WeatherWeatherResObject(description: "test", icon: "test")], main: WeatherMainResObject(temp: 372.0, pressure: 99, humidity: 99))
 				observer.onNext(weatherResResult)
 			} else {
-				observer.onError(AnyError.any)
+				observer.onError(HTTPStatusCode.notFound)
 			}
 			return Disposables.create()
 		}

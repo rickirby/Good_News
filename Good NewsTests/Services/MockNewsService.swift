@@ -24,7 +24,7 @@ class MockNewsService: NewsServiceProtocol {
 				
 				observer.onNext(newsResult)
 			} else {
-				observer.onError(AnyError.any)
+				observer.onError(HTTPStatusCode.notFound)
 			}
 			return Disposables.create()
 		}

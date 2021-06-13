@@ -71,6 +71,8 @@ class HomeNewsViewModelSpec: QuickSpec {
 				it("On error scheme, should got expected mock service value") {
 					var article: [NewsArticleResObject] = []
 					
+					let expectedError: HTTPStatusCode = .notFound
+					
 					mockNewsService.testSchemeSuccess = false
 					viewModel.onNeedRefresh = {
 						article = viewModel.articles
@@ -79,7 +81,7 @@ class HomeNewsViewModelSpec: QuickSpec {
 					
 					expect(article.count).to(equal(1))
 					expect(article.first?.title).to(equal("Error"))
-					expect(article.first?.content).to(equal("Something error happened"))
+					expect(article.first?.content).to(equal("Error happened with status code \(expectedError.rawValue) (\(expectedError.description))"))
 					expect(article.first?.urlToImage).to(equal("ap_paper"))
 				}
 			}

@@ -64,7 +64,7 @@ class HomeWeatherViewModelSpec: QuickSpec {
 					viewModel.loadData()
 					
 					expect(gotName).to(equal("test"))
-					expect(gotDescription).to(equal("test"))
+					expect(gotDescription).to(equal("Test"))
 					expect(gotIcon).to(equal("test"))
 					expect(gotTemp).to(equal(99.0))
 					expect(gotPressure).to(equal(99))
@@ -91,6 +91,8 @@ class HomeWeatherViewModelSpec: QuickSpec {
 					var gotPressure = 0
 					var gotHumidity = 0
 					
+					let expectedError: HTTPStatusCode = .notFound
+					
 					mockWeatherService.testSchemeSuccess = false
 					viewModel.onNeedRefresh = {
 						gotName = viewModel.cityName
@@ -103,7 +105,7 @@ class HomeWeatherViewModelSpec: QuickSpec {
 					viewModel.loadData()
 					
 					expect(gotName).to(equal("Error"))
-					expect(gotDescription).to(equal("Something Error Happened"))
+					expect(gotDescription).to(equal("Error happened with status code \(expectedError.rawValue) (\(expectedError.description))"))
 					expect(gotIcon).to(equal(""))
 					expect(gotTemp).to(equal(0))
 					expect(gotPressure).to(equal(0))
