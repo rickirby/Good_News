@@ -29,6 +29,9 @@ Waiting is boring, right? Making an API call can not be done instantly. It needs
 ### Pagination
 List or table is the easiest way to display a lot of data. In this case, the number covid-19 news that was got from [newsapi.org](https://newsapi.org/) was a lot. Then I implemented pagination on the Table Node. On every API call, the apps only fetch 10 datas, then after the Table Node reach the bottom, it will fetch the next 10 datas and so on.
 
+### Github Action
+I setup Github Action Workflows. Just check on "Action" section to check the progress and log. Then, code coverage is reported to [codecov.io](https://codecov.io/).
+
 ## How to Run this Apps
 
 Simply clone or download this repository, open the .xcworkspace file, and hit cmd + R. You can also do the Unit Test by simply hitting cmd + U.
