@@ -9,4 +9,4 @@ ignore:
   - "*RequestResult.swift"
 output_directory: ./
 scheme: "Good News"
-xcodeproj: "Good News.xcworkspace"
+xcodeproj: "Good News.xcodeproj"
