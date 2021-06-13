@@ -1,0 +1,29 @@
+name: Swift
+
+on:
+  push:
+    branches:
+      - master
+      
+  pull_request:
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: macOS-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Bundle Install
+        run: |
+          bundle install
+      - name: Build and Test
+        run: exec fastlane scan --destination "platform=iOS Simulator,OS=14.4,name=iPhone 11" --scheme "Good News"
+      - name: After Success
+        run: |
+          slather
+          bash <(curl -s https://codecov.io/bash) -f ./cobertura.xml -X coveragepy -X gcov -X xcode
