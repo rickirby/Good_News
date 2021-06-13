@@ -10,3 +10,4 @@ ignore:
 output_directory: ./
 scheme: "Good News"
 xcodeproj: "Good News.xcodeproj"
+workspace: "Good News.xcworkspace"
