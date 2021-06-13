@@ -1,11 +1,12 @@
 coverage_service: cobertura_xml
-xcodeproj: Good\ News.xcworkspace
-scheme: Good\ News
-output_directory: ./
 ignore:
-  - Good\ NewsTest/*
-  - Good\ News/Common/*
-  - *Node.swift
-  - *Service.swift
-  - *ServiceProtocol.swift
-  - *RequestResult.swift
+  - "Good NewsTest/*"
+  - "Good News/Common/*"
+  - "*Node.swift"
+  - "*Node.swift"
+  - "*Service.swift"
+  - "*ServiceProtocol.swift"
+  - "*RequestResult.swift"
+output_directory: ./
+scheme: "Good News"
+xcodeproj: "Good News.xcworkspace"
