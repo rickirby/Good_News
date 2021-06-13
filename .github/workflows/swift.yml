@@ -22,7 +22,7 @@ jobs:
         run: |
           bundle install
       - name: Build and Test
-        run: exec fastlane scan --destination "platform=iOS Simulator,OS=14.2,name=iPhone 11" --scheme "Good News"
+        run: exec fastlane scan --destination "platform=iOS Simulator,OS=14.4,name=iPhone 11" --scheme "Good News"
       - name: After Success
         run: |
           slather
