@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		097AE6362673B07100B758D3 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097AE6352673B07100B758D3 /* HTTPStatusCode.swift */; };
 		37DF380FBE4CC5F49478FCE8 /* Pods_Good_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A66727F0248521F75C10D4AD /* Pods_Good_News.framework */; };
 		70DED2DBB3E5BCD5938E5C44 /* Pods_Good_NewsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424C0911BC33206678F9696C /* Pods_Good_NewsTests.framework */; };
 		DE2174A5266F4EE800CEFDAE /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2174A4266F4EE800CEFDAE /* Encodable+Extension.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		097AE6352673B07100B758D3 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		176E82608D7A5F853FAE4FA7 /* Pods-Good News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Good News.debug.xcconfig"; path = "Target Support Files/Pods-Good News/Pods-Good News.debug.xcconfig"; sourceTree = "<group>"; };
 		2B3BD980D4D51D0B6088D844 /* Pods-Good NewsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Good NewsTests.release.xcconfig"; path = "Target Support Files/Pods-Good NewsTests/Pods-Good NewsTests.release.xcconfig"; sourceTree = "<group>"; };
 		424C0911BC33206678F9696C /* Pods_Good_NewsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Good_NewsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,6 +352,7 @@
 				DE9F7399266612FC009A9436 /* Coordinator.swift */,
 				DE9F7402266637A5009A9436 /* DeviceSize.swift */,
 				DE9F741926665710009A9436 /* GoodNewsConstant.swift */,
+				097AE6352673B07100B758D3 /* HTTPStatusCode.swift */,
 				DE9F7391266612E2009A9436 /* Navigator.swift */,
 			);
 			path = Utils;
@@ -642,6 +645,7 @@
 				DE9F739A266612FC009A9436 /* Coordinator.swift in Sources */,
 				DE9F73DD26661C12009A9436 /* HomeHeaderNode.swift in Sources */,
 				DE2174A5266F4EE800CEFDAE /* Encodable+Extension.swift in Sources */,
+				097AE6362673B07100B758D3 /* HTTPStatusCode.swift in Sources */,
 				DE9F742E26665E89009A9436 /* WeatherRequestResult.swift in Sources */,
 				DE419405266DEE8700ED1BA6 /* HomeNewsViewModel.swift in Sources */,
 				DE9F7408266637FA009A9436 /* HomeWeatherNode.swift in Sources */,

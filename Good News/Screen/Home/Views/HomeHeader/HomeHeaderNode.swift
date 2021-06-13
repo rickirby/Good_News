@@ -27,7 +27,6 @@ class HomeHeaderNode: ASCellNode {
 	}
 	
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-		print(constrainedSize)
 		profileImageNode.style.preferredSize = CGSize(width: 32, height: 32)
 		
 		let leftStack = ASStackLayoutSpec(

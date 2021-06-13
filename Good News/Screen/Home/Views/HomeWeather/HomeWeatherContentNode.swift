@@ -165,7 +165,7 @@ class HomeWeatherContentNode: ASDisplayNode {
 	
 	private func displayTempDescriptionTextNode() {
 		let textStyle = TextStyle(size: 18, weight: .light, color: .white)
-		tempDescriptionTextNode.attributedText = textStyle.getText(from: viewModel.temperatureDescription.capitalized)
+		tempDescriptionTextNode.attributedText = textStyle.getText(from: viewModel.temperatureDescription)
 	}
 	
 	private func displayHumidityTextNode() {

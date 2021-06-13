@@ -48,26 +48,32 @@ class HomeWeatherViewModel {
 					self?.pressure = result.main.pressure
 					
 					if let weatherDescription = result.weather.first {
-						self?.temperatureDescription = weatherDescription.description
+						self?.temperatureDescription = weatherDescription.description.capitalized
 						self?.temperatureIconCode = weatherDescription.icon
 					}
 					
 					self?.onNeedRefresh?()
 				},
-				onError: { [weak self] _ in
-					self?.displayError()
+				onError: { [weak self] error in
+					self?.displayError(error: error)
 				}
 			)
 			.disposed(by: disposeBag)
 	}
 	
-	private func displayError() {
+	private func displayError(error: Error) {
+		
 		cityName = "Error"
 		temperature = 0
-		temperatureDescription = "Something Error Happened"
 		temperatureIconCode = ""
 		humidity = 0
 		pressure = 0
+		
+		if let error = error as? HTTPStatusCode {
+			temperatureDescription = "Error happened with status code \(error.rawValue) (\(error.description))"
+		} else {
+			temperatureDescription = error.localizedDescription
+		}
 		
 		onNeedRefresh?()
 	}

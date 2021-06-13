@@ -15,16 +15,14 @@ import Good_News
 class MockNewsService: NewsServiceProtocol {
 	
 	var testSchemeSuccess: Bool = true
+	var testNewsResult: NewsResResult = NewsResResult(totalResults: 0, articles: [])
 	
 	func getNewsData(topic: String, itemsPerPage: Int, page: Int) -> Observable<NewsResResult> {
 		return Observable.create { [weak self] observer -> Disposable in
-			if self?.testSchemeSuccess == true {
-				let article = NewsArticleResObject(title: "test", content: "test", url: "test", urlToImage: "test")
-				let newsResult = NewsResResult(totalResults: 1, articles: [article])
-				
+			if self?.testSchemeSuccess == true, let newsResult = self?.testNewsResult {
 				observer.onNext(newsResult)
 			} else {
-				observer.onError(AnyError.any)
+				observer.onError(HTTPStatusCode.notFound)
 			}
 			return Disposables.create()
 		}

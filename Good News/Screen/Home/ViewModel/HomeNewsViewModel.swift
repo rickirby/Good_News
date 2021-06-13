@@ -16,6 +16,7 @@ class HomeNewsViewModel {
 	var articles: [NewsArticleResObject] = []
 	
 	var isSkeleton: Bool = true
+	var isSuccess: Bool = false
 	var totalResult: Int = 0
 	let itemsPerPage: Int = 10
 	
@@ -30,10 +31,27 @@ class HomeNewsViewModel {
 		newsService.getNewsData(topic: "covid", itemsPerPage: itemsPerPage, page: 1)
 			.subscribe(onNext: { [weak self] result in
 				self?.totalResult = result.totalResults
-				self?.articles = result.articles
+				
+				if result.articles.isEmpty {
+					self?.articles = [NewsArticleResObject(title: "No Result Found", content: "System didn't find any news for requested topic", url: "", urlToImage: "ap_paper")]
+					self?.isSuccess = false
+				} else {
+					self?.articles = result.articles
+					self?.isSuccess = true
+				}
+				
+				self?.isSkeleton = false
+				
 				self?.onNeedRefresh?()
 			}, onError: { [weak self] error in
-				self?.articles = [NewsArticleResObject(title: "Error", content: "Something error happened", url: "", urlToImage: "ap_paper")]
+				if let error = error as? HTTPStatusCode {
+					self?.articles = [NewsArticleResObject(title: "Error", content: "Error happened with status code \(error.rawValue) (\(error.description))", url: "", urlToImage: "ap_paper")]
+				} else {
+					self?.articles = [NewsArticleResObject(title: "Error", content: error.localizedDescription, url: "", urlToImage: "ap_paper")]
+				}
+				
+				self?.isSkeleton = false
+				self?.isSuccess = false
 				self?.onNeedRefresh?()
 			})
 			.disposed(by: disposeBag)

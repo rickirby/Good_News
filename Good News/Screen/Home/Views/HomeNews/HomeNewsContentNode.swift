@@ -110,7 +110,6 @@ class HomeNewsContentNode: ASDisplayNode {
 	private func configureViewModel() {
 		viewModel.onNeedRefresh = { [weak self] in
 			DispatchQueue.main.async { [weak self] in
-				self?.viewModel.isSkeleton = false
 				
 				self?.collectionNode.reloadData(completion: { [weak self] in
 					self?.setNeedsLayout()
