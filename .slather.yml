@@ -1,12 +1,18 @@
 coverage_service: cobertura_xml
 ignore:
   - "Good NewsTest/*"
+  - "Good News/Coordinator"
   - "Good News/Common/*"
+  - "AppDelegate.swift"
+  - "SceneDelegate.swift"
   - "*Node.swift"
   - "*Node.swift"
   - "*Service.swift"
   - "*ServiceProtocol.swift"
   - "*RequestResult.swift"
+  - "*ViewController.swift"
+  - "*Coordinator.swift"
+  
 output_directory: ./
 scheme: "Good News"
 xcodeproj: "Good News.xcodeproj"
