@@ -46,7 +46,12 @@ class HomeNewsViewModelSpec: QuickSpec {
 				it("On success scheme, should got expected mock service value") {
 					var article: [NewsArticleResObject] = []
 					
+					let expectedArticle = NewsArticleResObject(title: "test", content: "test", url: "test", urlToImage: "test")
+					let expectedNewsResult = NewsResResult(totalResults: 1, articles: [expectedArticle])
+					
 					mockNewsService.testSchemeSuccess = true
+					mockNewsService.testNewsResult = expectedNewsResult
+					
 					viewModel.onNeedRefresh = {
 						article = viewModel.articles
 					}
@@ -54,6 +59,20 @@ class HomeNewsViewModelSpec: QuickSpec {
 					
 					expect(article.count).to(equal(1))
 					expect(article.first?.title).to(equal("test"))
+				}
+				
+				it("On success scheme and empty result, should got expected message") {
+					var article: [NewsArticleResObject] = []
+					
+					mockNewsService.testSchemeSuccess = true
+					
+					viewModel.onNeedRefresh = {
+						article = viewModel.articles
+					}
+					viewModel.loadData()
+					
+					expect(article.count).to(equal(1))
+					expect(article.first?.title).to(equal("No Result Found"))
 				}
 				
 				it("On error scheme, should call onNeedRefresh closure") {
